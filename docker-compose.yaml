@@ -1,0 +1,27 @@
+
+services:
+  # Service pour l'application Java
+  foyer-app:
+    build:
+      context: .
+      dockerfile: Dockerfile  # Assurez-vous que le Dockerfile est dans le même répertoire
+    ports:
+      - "8094:8094"  # Mappe le port 8094 de l'application au port 8089 de l'hôte
+
+
+    depends_on:
+      - db  # S'assure que le service de base de données est démarré avant l'application
+
+  # Service pour la base de données MySQL
+  db:
+    image: mysql:latest  # Utilise l'image officielle de MySQL
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"  # Définit le mot de passe pour l'utilisateur root
+      MYSQL_DATABASE: db  # Crée la base de données lors du démarrage
+    ports:
+      - "3306:3306"  # Mappe le port 3306 de MySQL au port 3306 de l'hôte
+    volumes:
+      - db_data:/var/lib/mysql  # Persiste les données de MySQL
+
+volumes:
+  db_data:  # Définit un volume nommé pour persister les données
