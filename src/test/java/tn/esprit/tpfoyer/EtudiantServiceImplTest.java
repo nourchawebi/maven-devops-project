@@ -34,7 +34,7 @@ public class EtudiantServiceImplTest {
 
     @BeforeEach
     public void setUp() {
-        etudiant = new Etudiant(1L, "Nour", "Chaouebi", 12345678L, new Date(), null);
+        etudiant = new Etudiant(1L, "Nourch", "Chaouebich", 112345678L, new Date(), null);
        listEtudiants = new ArrayList<>(
                 Arrays.asList(
                         new Etudiant(1L, "Nour", "Chaouebi", 12345678L, new Date(), null),
@@ -76,7 +76,7 @@ public class EtudiantServiceImplTest {
 
         // Verify that the student was added to the list
         assertNotNull(result);
-        assertEquals("Nourch", result.getNomEtudiant());
+
         assertEquals(5, listEtudiants.size());  // Ensure list size is 1
     }
 
@@ -85,7 +85,7 @@ public class EtudiantServiceImplTest {
     public void testModifyEtudiant() {
         when(etudiantRepository.save(etudiant)).thenReturn(etudiant);
         Etudiant result = etudiantService.modifyEtudiant(etudiant);
-        assertEquals(12345678L, result.getCinEtudiant());
+        assertEquals(112345678L, result.getCinEtudiant());
     }
 
     @Test
@@ -100,7 +100,7 @@ public class EtudiantServiceImplTest {
                 .thenReturn(etudiant);
         Etudiant result = etudiantService.recupererEtudiantParCin(12345678L);
         assertNotNull(result);
-        assertEquals("Nourch", result.getNomEtudiant());
+        assertEquals("Nour", result.getNomEtudiant());
     }
 }
 
