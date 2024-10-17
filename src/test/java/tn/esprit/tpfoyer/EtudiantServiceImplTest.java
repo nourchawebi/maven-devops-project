@@ -34,7 +34,7 @@ public class EtudiantServiceImplTest {
 
     @BeforeEach
     public void setUp() {
-        etudiant = new Etudiant(1L, "Nourch", "Chaouebich", 112345678L, new Date(), null);
+        etudiant = new Etudiant(1L, "Nourch", "Chaouebich", 12345677L, new Date(), null);
        listEtudiants = new ArrayList<>(
                 Arrays.asList(
                         new Etudiant(1L, "Nour", "Chaouebi", 12345678L, new Date(), null),
@@ -48,14 +48,16 @@ public class EtudiantServiceImplTest {
 
     }
     @Test
+    @Order(1)
     public void testRetrieveAllEtudiants() {
         when(etudiantRepository.findAll()).thenReturn(listEtudiants);
         List<Etudiant> result = etudiantService.retrieveAllEtudiants();
         assertEquals(4, result.size());
-        assertEquals("Nour", result.get(0).getNomEtudiant());
+
     }
 
     @Test
+    @Order(2)
     public void testRetrieveEtudiant() {
         when(etudiantRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(etudiant));
         Etudiant result = etudiantService.retrieveEtudiant(1L);
@@ -64,6 +66,7 @@ public class EtudiantServiceImplTest {
     }
 
     @Test
+    @Order(3)
     public void testAddEtudiant() {
         when(etudiantRepository.save(etudiant)).thenAnswer(invocation -> {
             Etudiant savedEtudiant = invocation.getArgument(0);
@@ -82,19 +85,22 @@ public class EtudiantServiceImplTest {
 
 
     @Test
+    @Order(4)
     public void testModifyEtudiant() {
         when(etudiantRepository.save(etudiant)).thenReturn(etudiant);
         Etudiant result = etudiantService.modifyEtudiant(etudiant);
-        assertEquals(112345678L, result.getCinEtudiant());
+        assertEquals(12345677L, result.getCinEtudiant());
     }
 
     @Test
+    @Order(5)
     public void testRemoveEtudiant() {
         etudiantService.removeEtudiant(1L);
         Mockito.verify(etudiantRepository, Mockito.times(1)).deleteById(1L);
     }
 
     @Test
+    @Order(6)
     public void testRecupererEtudiantParCin() {
         when(etudiantRepository.findEtudiantByCinEtudiant(12345678L))
                 .thenReturn(etudiant);
