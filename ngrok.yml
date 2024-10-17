@@ -1,7 +1,7 @@
 version: 2
 tunnels:
-  sonar:
-    addr: http://sonar:9000
+  sonarq:
+    addr: http://sonar:9900
     proto: http
     schemes:
       - https
