@@ -12,8 +12,10 @@ import tn.esprit.tpfoyer.service.EtudiantServiceImpl;
 
 import java.util.*;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.when;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(MockitoExtension.class)
@@ -47,7 +49,7 @@ public class EtudiantServiceImplTest {
     }
     @Test
     public void testRetrieveAllEtudiants() {
-        Mockito.when(etudiantRepository.findAll()).thenReturn(listEtudiants);
+        when(etudiantRepository.findAll()).thenReturn(listEtudiants);
         List<Etudiant> result = etudiantService.retrieveAllEtudiants();
         assertEquals(4, result.size());
         assertEquals("Nour", result.get(0).getNomEtudiant());
@@ -55,7 +57,7 @@ public class EtudiantServiceImplTest {
 
     @Test
     public void testRetrieveEtudiant() {
-        Mockito.when(etudiantRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(etudiant));
+        when(etudiantRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(etudiant));
         Etudiant result = etudiantService.retrieveEtudiant(1L);
         Assertions.assertNotNull(result);
 
@@ -63,15 +65,25 @@ public class EtudiantServiceImplTest {
 
     @Test
     public void testAddEtudiant() {
-        Mockito.when(etudiantRepository.save(etudiant)).thenReturn(etudiant);
+        when(etudiantRepository.save(etudiant)).thenAnswer(invocation -> {
+            Etudiant savedEtudiant = invocation.getArgument(0);
+            listEtudiants.add(etudiant);  // Add to the list when saved
+            return savedEtudiant;
+        });
+
+        // Call the service to add the student
         Etudiant result = etudiantService.addEtudiant(etudiant);
+
+        // Verify that the student was added to the list
         assertNotNull(result);
         assertEquals("Nourch", result.getNomEtudiant());
+        assertEquals(5, listEtudiants.size());  // Ensure list size is 1
     }
+
 
     @Test
     public void testModifyEtudiant() {
-        Mockito.when(etudiantRepository.save(etudiant)).thenReturn(etudiant);
+        when(etudiantRepository.save(etudiant)).thenReturn(etudiant);
         Etudiant result = etudiantService.modifyEtudiant(etudiant);
         assertEquals(12345678L, result.getCinEtudiant());
     }
@@ -84,7 +96,7 @@ public class EtudiantServiceImplTest {
 
     @Test
     public void testRecupererEtudiantParCin() {
-        Mockito.when(etudiantRepository.findEtudiantByCinEtudiant(12345678L))
+        when(etudiantRepository.findEtudiantByCinEtudiant(12345678L))
                 .thenReturn(etudiant);
         Etudiant result = etudiantService.recupererEtudiantParCin(12345678L);
         assertNotNull(result);
