@@ -1,24 +1,23 @@
 FROM openjdk:17-bullseye
 
-#COPY . /code/foyernour/
+# Set working directory
+WORKDIR /code/
 
-WORKDIR /code/foyernour/
-#RUN rm -rf target
+# Install curl to download the JAR from Nexus
+RUN apt-get update && apt-get install -y curl && apt-get clean
 
-# Install Maven
-#RUN apt-get update
-#RUN apt-get install -y maven
+# Define default Nexus credentials and repository path as build arguments
+ARG NEXUS_USER=nexus-user
+ARG NEXUS_PASSWORD=nexus-password
+ARG NEXUS_REPO_URL=http://localhost:8081/repository/maven-releases
+ARG JAR_PATH=tn/esprit/tp-foyer/5.0.0/tp-foyer-5.0.0.jar
 
-# Clean and package the application
-#RUN mvn clean package -DskipTests --no-transfer-progress -B
+# Download the JAR from Nexus
+RUN curl -u $NEXUS_USER:$NEXUS_PASSWORD \
+    -O $NEXUS_REPO_URL/$JAR_PATH
 
-# Copy the built JAR file from Jenkins workspace to the image
-#RUN mv /code/foyernour/target/*.jar /code/
-COPY target/*.jar /code/foyernour/app.jar
-
-
-# Clean up to reduce image size
-RUN rm -rf /code/foyernour/ /root/.m2 /root/.cache /tmp/* /var/tmp/*
+# Clean up unnecessary files to reduce image size
+RUN rm -rf /root/.cache /tmp/* /var/tmp/*
 
 # Set environment variables
 ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
@@ -30,4 +29,4 @@ ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
 EXPOSE 8094
 
 # Command to run the application
-CMD java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar /code/*.jar
+CMD java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar tp-foyer-5.0.0.jar
