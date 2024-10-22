@@ -2,7 +2,7 @@
 services:
   # Service pour l'application Java
   foyer-app:
-    image: foyer-app
+    image:  nourchawebi/foyer-app:1.0.0
     ports:
       - "8089:8089"
 
