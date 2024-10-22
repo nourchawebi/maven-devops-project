@@ -1,5 +1,5 @@
 version: 2
-authtoken: 2lOA3YlWVeSkLmjAx1GkfLcnM4y_4TCK1812J2k4JuVhP4ZF
+
 tunnels:
   sonarq:
     addr: http://sonar:9900
