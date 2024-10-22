@@ -25,21 +25,6 @@ services:
     volumes:
       - postgresql1:/var/lib/postgresql
       - postgresql_data1:/var/lib/postgresql/data
-  ngrok:
-    image: ngrok/ngrok:latest
-    environment:
-      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
-    command:
-      - "start"
-      - "--all"
-      - "--config"
-      - "/etc/ngrok.yml"
-    ports:
-      - 4040:4040
-    volumes:
-      - ./ngrok.yml:/etc/ngrok.yml
-    networks:
-      - sonar
 
 networks:
   sonar:
