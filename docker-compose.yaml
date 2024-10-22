@@ -2,17 +2,20 @@
 services:
   # Service pour l'application Java
   foyer-app:
-    build:
-      context: .
-      dockerfile: Dockerfile  # Assurez-vous que le Dockerfile est dans le même répertoire
+    image: foyer-app
     ports:
-      - "8094:8094"  # Mappe le port 8094 de l'application au port 8089 de l'hôte
+      - "8089:8089"
 
 
     depends_on:
-      - db  # S'assure que le service de base de données est démarré avant l'application
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/db?createDatabaseIfNotExist=true  # Updated DB URL
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ""
+      SPRING_JPA_SHOW_SQL: true
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
 
-  # Service pour la base de données MySQL
   db:
     image: mysql:latest  # Utilise l'image officielle de MySQL
     environment:
