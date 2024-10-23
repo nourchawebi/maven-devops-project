@@ -5,6 +5,9 @@ pipeline {
          SCANNER_HOME = tool 'sonar-scanner'
     }
     agent any
+     triggers {
+    githubPush()
+  }
     stages {
         stage("Clean Up") {
             steps {
