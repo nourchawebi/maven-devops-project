@@ -24,7 +24,7 @@ ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     JAVA_OPTS="" \
     PHASE=""
 
-# Expose the application port
+
 EXPOSE 8089
 
 # Command to run the application
