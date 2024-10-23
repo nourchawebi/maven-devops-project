@@ -1,6 +1,6 @@
 FROM openjdk:17-bullseye
 
-# Set working directory
+
 WORKDIR /code/
 
 # Install curl to download the JAR from Nexus
