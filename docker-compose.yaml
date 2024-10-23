@@ -17,7 +17,7 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
 
   db:
-    image: mysql:latest  # Utilise l'image officielle de MySQL
+    image: mysql:latest  
     environment:
       MYSQL_ROOT_PASSWORD: "root"  # Définit le mot de passe pour l'utilisateur root
       MYSQL_DATABASE: db  # Crée la base de données lors du démarrage
