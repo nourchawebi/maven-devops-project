@@ -19,7 +19,6 @@ RUN curl -u $NEXUS_USER:$NEXUS_PASSWORD \
 
 RUN rm -rf /root/.cache /tmp/* /var/tmp/*
 
-# Set environment variables
 ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     JHIPSTER_SLEEP=0 \
     JAVA_OPTS="" \
