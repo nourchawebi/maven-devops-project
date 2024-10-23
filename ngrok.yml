@@ -1,11 +1,1 @@
-version: 2
-
-tunnels:
-  sonar:
-    addr: http://sonar:9900
-    proto: http
-    schemes:
-      - https
-      - http
-    domain: infinite-wahoo-probably.ngrok-free.app
 
