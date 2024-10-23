@@ -19,7 +19,7 @@ services:
   db:
     image: mysql:latest  
     environment:
-      MYSQL_ROOT_PASSWORD: "root"  # Définit le mot de passe pour l'utilisateur root
+      MYSQL_ROOT_PASSWORD: "root"  
       MYSQL_DATABASE: db  # Crée la base de données lors du démarrage
     ports:
       - "3306:3306"  # Mappe le port 3306 de MySQL au port 3306 de l'hôte
