@@ -27,5 +27,5 @@ ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
 
 EXPOSE 8089
 
-# Command to run the application
+
 CMD java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar tp-foyer-5.0.0.jar
