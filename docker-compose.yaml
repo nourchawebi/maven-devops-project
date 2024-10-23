@@ -27,4 +27,4 @@ services:
       - db_data:/var/lib/mysql  
 
 volumes:
-  db_data:  # Définit un volume nommé pour persister les données
+  db_data: 
