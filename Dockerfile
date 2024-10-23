@@ -16,7 +16,7 @@ ARG JAR_PATH=tn/esprit/tp-foyer/5.0.0/tp-foyer-5.0.0.jar
 RUN curl -u $NEXUS_USER:$NEXUS_PASSWORD \
     -O $NEXUS_REPO_URL/$JAR_PATH
 
-# Clean up unnecessary files to reduce image size
+
 RUN rm -rf /root/.cache /tmp/* /var/tmp/*
 
 # Set environment variables
