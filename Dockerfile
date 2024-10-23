@@ -6,7 +6,7 @@ WORKDIR /code/
 
 RUN apt-get update && apt-get install -y curl && apt-get clean
 
-# Define default Nexus credentials and repository path as build arguments
+
 ARG NEXUS_USER=admin
 ARG NEXUS_PASSWORD=nexus
 ARG NEXUS_REPO_URL=http://192.168.172.144:8081/repository/maven-releases
