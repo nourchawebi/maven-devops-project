@@ -12,7 +12,7 @@ ARG NEXUS_PASSWORD=nexus
 ARG NEXUS_REPO_URL=http://192.168.172.144:8081/repository/maven-releases
 ARG JAR_PATH=tn/esprit/tp-foyer/5.0.0/tp-foyer-5.0.0.jar
 
-# Download the JAR from Nexus
+
 RUN curl -u $NEXUS_USER:$NEXUS_PASSWORD \
     -O $NEXUS_REPO_URL/$JAR_PATH
 
