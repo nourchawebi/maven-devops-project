@@ -1,6 +1,6 @@
 
 services:
-  # Service pour l'application Java
+ 
   foyer-app:
     image:  nourchawebi/foyer-app:1.1.138
     ports:
