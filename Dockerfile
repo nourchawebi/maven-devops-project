@@ -3,7 +3,7 @@ FROM openjdk:17-bullseye
 
 WORKDIR /code/
 
-# Install curl to download the JAR from Nexus
+
 RUN apt-get update && apt-get install -y curl && apt-get clean
 
 # Define default Nexus credentials and repository path as build arguments
