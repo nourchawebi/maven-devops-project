@@ -1,12 +1,8 @@
-#hook
 services:
- 
   foyer-app:
-    image:  nourchawebi/foyer-app:1.1.149
+    image: nourchawebi/foyer-app:1.1.149
     ports:
       - "8089:8089"
-
-
     depends_on:
       - db
     environment:
@@ -16,6 +12,10 @@ services:
       SPRING_JPA_SHOW_SQL: true
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQLDialect
+      # Actuator and Prometheus settings
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: /actuator
+      MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "*"
+      MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED: true
 
   db:
     image: mysql:latest  
@@ -28,4 +28,4 @@ services:
       - db_data:/var/lib/mysql  
 
 volumes:
-  db_data: 
+  db_data:
