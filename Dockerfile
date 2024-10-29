@@ -16,7 +16,7 @@ ARG JAR_PATH=tn/esprit/tp-foyer/5.0.0/tp-foyer-5.0.0.jar
 RUN curl -u $NEXUS_USER:$NEXUS_PASSWORD \
     -O $NEXUS_REPO_URL/$JAR_PATH
 
-
+#1
 RUN rm -rf /root/.cache /tmp/* /var/tmp/*
 
 ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
