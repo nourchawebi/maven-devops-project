@@ -22,8 +22,7 @@ public class Foyer {
 
     String nomFoyer;
     long capaciteFoyer;
-     long nbr;
-    long tst;
+   String test;
     @OneToOne(mappedBy = "foyer")
     @ToString.Exclude
     @JsonIgnore
