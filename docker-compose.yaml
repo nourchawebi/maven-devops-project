@@ -1,6 +1,6 @@
 services:
   foyer-app:
-    image: nourchawebi/foyer-app:1.1.164
+    image: nourchawebi/foyer-app:1.1.167
     ports:
       - "8089:8089"
     depends_on:
