@@ -27,8 +27,7 @@ public class Foyer {
     @ToString.Exclude
     @JsonIgnore
     Universite universite;
-     String test;
-     String hook ;
+
     @OneToMany(mappedBy = "foyer")
             @JsonIgnore
             @ToString.Exclude
