@@ -1,7 +1,6 @@
 services:
   mysqldb:
     image: mysql:latest
-    restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=
       - MYSQL_DATABASE=db
