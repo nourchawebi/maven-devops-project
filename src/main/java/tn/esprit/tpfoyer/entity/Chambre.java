@@ -25,7 +25,7 @@ public class Chambre {
 
     @Enumerated(EnumType.STRING)
     TypeChambre typeC;
-
+//test
 
 
     @OneToMany
