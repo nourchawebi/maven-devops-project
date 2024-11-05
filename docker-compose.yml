@@ -11,7 +11,7 @@ services:
   tpfoyer:
     depends_on:
       - mysqldb
-    image: asmachoueibi/tpfoyer:1.1.10
+    image: asmachoueibi/tpfoyer:1.1.18
     restart: on-failure
     ports:
       - 8089:8089
