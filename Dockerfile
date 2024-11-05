@@ -1,5 +1,4 @@
 FROM openjdk:17-bullseye
-#testhook
 
 WORKDIR /code/
 
